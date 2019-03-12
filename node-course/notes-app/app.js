@@ -1,30 +1,60 @@
-// const fileSystem = require("fs");appendFileSync
-//
-// fileSystem.writeFileSync("notes.txt","THis is my first node application");
-// fileSystem.appendFileSync("notes.txt"," THis is my appended text");
-/**
-***********************************
-*/
-
-
-// const name = "Sakshi";
-// console.log("name is : "+name);
-// const add = require('./utils.js');
-// const sum = add(4,-2)
-// console.log(sum);
-
-//Lecture 12
-// const validator = require("validator");
-// const text = require('./notes.js');
-// console.log(validator.isEmail("Sakshimail.com"));
-//
-// console.log(text());
-/*
-lecture 13*/
+//Lecture 15
 const chalk = require("chalk");
 const text = require('./notes.js');
-console.log(chalk.red(text()));
-console.log(chalk.black.bgRed.bold(text()));
+const yargs = require("yargs"); //Lect 16
 
-//Lecture 15
+const command = process.argv[2];
+console.log("**** "+command);
+if(command === 'add') {
+  console.log("Adding new note");
+} else if(command === 'remove') {
+  console.log("Removing note");
+} else {
+  console.log("Wrong command");
+}
+
+//Lecture 16
+
+//Customisze yargs version
+yargs.version("1.1.0")
+
 console.log(process.argv);
+
+//CReate add command
+yargs.command({
+ command : 'add',
+ describe : 'Add a new note',
+ handler: function() {
+   console.log("Adding a new note");
+ }
+})
+//CReate remove command
+yargs.command({
+ command : 'remove',
+ describe : 'Remove a note',
+ handler: function() {
+   console.log("Removing a new note");
+  }
+})
+
+//CReate list command
+yargs.command({
+ command : 'list',
+ describe : 'Listing all note',
+ handler: function() {
+   console.log("Listing out all the notes");
+  }
+})
+
+//CReate read command
+yargs.command({
+ command : 'read',
+ describe : 'Reading a note',
+ handler: function() {
+   console.log("Reading a note");
+  }
+})
+
+
+
+console.log(yargs.argv);
