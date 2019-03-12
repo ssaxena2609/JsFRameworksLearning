@@ -1,19 +1,7 @@
-//Lecture 15
+//Lecture 16
 const chalk = require("chalk");
 const text = require('./notes.js');
-const yargs = require("yargs"); //Lect 16
-
-const command = process.argv[2];
-console.log("**** "+command);
-if(command === 'add') {
-  console.log("Adding new note");
-} else if(command === 'remove') {
-  console.log("Removing note");
-} else {
-  console.log("Wrong command");
-}
-
-//Lecture 16
+const yargs = require("yargs");
 
 //Customisze yargs version
 yargs.version("1.1.0")
@@ -24,8 +12,22 @@ console.log(process.argv);
 yargs.command({
  command : 'add',
  describe : 'Add a new note',
- handler: function() {
-   console.log("Adding a new note");
+ builder: {
+   title : {
+     describe :'Note Title',
+     demandOption: true,
+     type: 'string'
+   },
+   body : { //LECTURE 17
+     describe :'Adding a new note will add a note to the existing list',
+     demandOption: true,
+     type: 'string'
+   }
+ },
+ handler: function(argv) {
+   console.log("MY Title provided in arguments is "+argv.title);
+  console.log("MY Title provided in arguments is "+argv.body);
+
  }
 })
 //CReate remove command
