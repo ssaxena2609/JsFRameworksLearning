@@ -12,8 +12,19 @@
 // const add = require('./utils.js');
 // const sum = add(4,-2)
 // console.log(sum);
-const validator = require("validator");
-const text = require('./notes.js');
-console.log(validator.isEmail("Sakshimail.com"));
 
-console.log(text());
+//Lecture 12
+// const validator = require("validator");
+// const text = require('./notes.js');
+// console.log(validator.isEmail("Sakshimail.com"));
+//
+// console.log(text());
+/*
+lecture 13*/
+const chalk = require("chalk");
+const text = require('./notes.js');
+console.log(chalk.red(text()));
+console.log(chalk.black.bgRed.bold(text()));
+
+//Lecture 15
+console.log(process.argv);
