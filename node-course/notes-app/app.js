@@ -1,4 +1,3 @@
-//Lecture 16
 const chalk = require("chalk");
 const text = require('./notes.js');
 const yargs = require("yargs");
