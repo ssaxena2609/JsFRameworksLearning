@@ -19,14 +19,21 @@ Wriritng to file
 // // console.log(JSON.parse(JsonBook));
 //
 // fs.writeFileSync('1-json.json',JsonBook);
-/*
 
-
-Wriritng to file ends here
-*/
 /*
 TO read the file
 */
+// const dataBuffer = fs.readFileSync('1-json.json')
+// const dataJson = dataBuffer.toString();
+// console.log(JSON.parse(dataJson).title);
+
+
+//Challenge
 const dataBuffer = fs.readFileSync('1-json.json')
 const dataJson = dataBuffer.toString();
-console.log(JSON.parse(dataJson).title);
+const data = JSON.parse(dataJson);
+console.log(data);
+ data.name = "Sakshi";
+ data.age = 28;
+const updatedJsonData = JSON.stringify(data);
+fs.writeFileSync('1-json.json',updatedJsonData);
