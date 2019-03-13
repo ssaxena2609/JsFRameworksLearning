@@ -1,18 +1,22 @@
-//LECTURE 30
+const request = require("request");
 
-console.log("app of weather app starting");
+const url = 'https://api.darksky.net/forecast/9816c3e832b17813932c254367072a39/37.8267,-122.4233?lang=es'
 
-setTimeout(() => {
-  console.log("2 seconds break it is");
-},2000);
-setTimeout(() => {
-  console.log("0 seconds break it is");
-},0);
-console.log("app of weather app stopping");
-//OUTPUT
-/*
-app of weather app starting
-app of weather app stopping
-0 seconds break it is
-2 seconds break it is
-*/
+const geoCodingUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1Ijoic3NheGVuYTI2MDkiLCJhIjoiY2p0N2Rya3E4MGpoeTQ5cGh5endkajY2ayJ9.UMw7ZgZU6ID_hKcyAKeWWg&limit=1'
+//Lecture 32
+// request({url: url}, (error, response) => {
+//   const data= JSON.parse(response.body);
+//   console.log(data.currently);
+// });
+
+//Lecture 33
+
+request({url:url, json: true},(error,response) => {
+  console.log(response.body.daily.data[0].summary + ' It is currently '+response.body.currently.temperature);
+})
+//Lecture 33 ends here
+//Lectur 34
+
+request({url:geoCodingUrl, json:true}, (error,response) => {
+  console.log("Lattitde is " +response.body.features[0].center[1]+' and longitude is ' +response.body.features[0].center[0]);
+})
