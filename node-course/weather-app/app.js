@@ -23,16 +23,16 @@ const enteredLocation= process.argv[2];
 if(!enteredLocation) {
    console.log("LOcation not entered");
 } else {
-  geoCode(enteredLocation[2], (error,response) => {
+  geoCode(enteredLocation[2], (error,{Lattitde, Longitude, Location}) => {
     if(error) {
          return console.log(error);
       }
-      console.log("Lattitde is " +response.Lattitde+' and longitude is ' +response.Longitude+ 'at '+response.Location);
-      forecast(response.Lattitde,response.Longitude,(error,data)=> {
+      console.log("Lattitde is " +Lattitde+' and longitude is ' +Longitude+ 'at '+Location);
+      forecast(Lattitde,Longitude,(error,{summary, temperature})=> {
          if(error) {
             return console.log(error);
          }
-         console.log(data.summary + ' It is currently '+data.temperature);
+         console.log(summary + ' It is currently '+temperature);
       });
 
   })
